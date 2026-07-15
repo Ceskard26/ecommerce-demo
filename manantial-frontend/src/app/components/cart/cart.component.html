@@ -1,0 +1,41 @@
+<div class="cart-page">
+  <h1>Carrito</h1>
+
+  <div *ngIf="orderConfirmation" class="confirmation">
+    <h2>Orden #{{ orderConfirmation.id }} confirmada</h2>
+    <p>Total: S/ {{ orderConfirmation.total.toFixed(2) }}</p>
+  </div>
+
+  <ng-container *ngIf="!orderConfirmation">
+    <div class="cart-items" *ngIf="(items$ | async) as items">
+      <p *ngIf="items.length === 0">Tu carrito está vacío.</p>
+
+      <div class="cart-item" *ngFor="let item of items">
+        <img [src]="item.product.image_url" [alt]="item.product.name" />
+        <div class="info">
+          <h4>{{ item.product.name }}</h4>
+          <p>S/ {{ item.product.price.toFixed(2) }} c/u</p>
+        </div>
+        <input
+          type="number"
+          min="1"
+          [value]="item.quantity"
+          (change)="updateQuantity(item.product.id, $event)"
+        />
+        <button class="remove" (click)="remove(item.product.id)">Quitar</button>
+      </div>
+
+      <div class="cart-total" *ngIf="items.length > 0">
+        <p>Total: <strong>S/ {{ getTotal().toFixed(2) }}</strong></p>
+        <p *ngIf="error" class="error">{{ error }}</p>
+        <button
+          class="checkout"
+          (click)="checkout()"
+          [disabled]="checkingOut"
+        >
+          {{ checkingOut ? 'Procesando...' : 'Confirmar compra' }}
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

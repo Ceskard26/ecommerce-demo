@@ -1,0 +1,23 @@
+<div class="product-page">
+  <h1>Catálogo</h1>
+
+  <p *ngIf="loading">Cargando productos...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <div class="product-grid" *ngIf="!loading && !error">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.image_url" [alt]="product.name" />
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">S/ {{ product.price.toFixed(2) }}</p>
+      <p class="stock" *ngIf="product.stock > 0">Stock: {{ product.stock }}</p>
+      <p class="stock out" *ngIf="product.stock === 0">Agotado</p>
+      <button
+        (click)="addToCart(product)"
+        [disabled]="product.stock === 0"
+      >
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+</div>
