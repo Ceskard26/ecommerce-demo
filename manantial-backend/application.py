@@ -188,10 +188,10 @@ def seed_db():
     sample_products = [
         Product(name="Camiseta básica", description="100% algodón", price=39.90, stock=50,
                 image_url="/products/polo.png"),
-        Product(name="Zapatillas urbanas", description="Ligeras y cómodas", price=189.90, stock=20,
-                image_url="/products/zapatillas.webp"),
+        Product(name="Zapatos tácticos", description="Ligeras y cómodas", price=189.90, stock=20,
+                image_url="/products/zapatillas.png"),
         Product(name="Mochila de viaje", description="35L, resistente al agua", price=129.00, stock=15,
-                image_url="/products/mochila.webp"),
+                image_url="/products/mochila.png"),
         Product(name="Capacitación técnica con Javier", description="worth it", price=999.00, stock=1,
                 image_url="/products/capacitacion.png"),
     ]
